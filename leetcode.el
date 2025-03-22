@@ -284,8 +284,8 @@ python3, ruby, rust, scala, swift, mysql, mssql, oraclesql.")
 
 ;;; Login
 ;; URL
-(defconst leetcode--domain    "leetcode.com")
-(defconst leetcode--url-base  "https://leetcode.com")
+(defconst leetcode--domain    "leetcode.cn")
+(defconst leetcode--url-base  "https://leetcode.cn")
 (defconst leetcode--url-login (concat leetcode--url-base "/accounts/login"))
 
 ;; Cookie key name
@@ -1155,7 +1155,8 @@ will show the detail in other window and jump to it."
                       "dislikes: " (number-to-string dislikes)))
       ;; Sometimes LeetCode don't have a '<p>' at the outermost...
       (insert "<p>" content "</p>")
-      (leetcode--replace-in-buffer "" "")
+      (leetcode--replace-in-buffer "
+" "")
       ;; NOTE: shr.el can't render "https://xxxx.png", so we use "http"
       (leetcode--replace-in-buffer "https" "http")
       (shr-render-buffer (current-buffer)))
@@ -1378,7 +1379,8 @@ major mode by `leetcode-prefer-language'and `auto-mode-alist'."
             (leetcode--insert-code-start-marker)
             (insert template-code)
             (leetcode--insert-code-end-marker)
-            (leetcode--replace-in-buffer "" "")))
+            (leetcode--replace-in-buffer "
+" "")))
         (funcall (assoc-default suffix auto-mode-alist #'string-match-p))
         (leetcode-solution-mode t))
 
